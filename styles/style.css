@@ -1,0 +1,26 @@
+#main{
+    width: 1440px;
+    height: 1264px;
+    /* background-color: #101010; */
+    margin: 0 auto;
+    background: #101010 url("/images/background.png") center center no-repeat;
+   
+    
+
+}
+
+.anton{
+    font-family: "Anton", sans-serif;
+  }
+.inter{
+    font-family: "Inter", sans-serif;
+}
+.poppins {
+    font-family: "Poppins", sans-serif;
+    
+  }
+
+  .bg-selected{
+    background-color: #FFA500;
+  }
+  
