@@ -1,10 +1,7 @@
 function gameOver(score){
         addClassById('playGround', 'hidden');
         removeClassById('score', 'hidden') ;
-        
         document.getElementById('totalScore').innerText= score;
-
-
 }
 
 
@@ -35,6 +32,7 @@ function handlekeyboardButtonpress(event){
     
     const playeredPressedKey = event.key.toLowerCase();
     const randomAlphabet = getInnertextById('randomAlphabet').toLowerCase();
+    removeClassById(randomAlphabet, "bg-selected")
 
 if(playeredPressedKey === randomAlphabet){
      score ++
@@ -42,38 +40,39 @@ if(playeredPressedKey === randomAlphabet){
 
 }
 
+
 else{
     life--
     updateInnertextById('lifeContainer', life)
-
 }
 
-if(life>=0){
+
+
+
+if((life<=0)|| (playeredPressedKey === "escape") ){
+    gameOver(score);
+   
+}
+
+else{
     continueGame()
 }
-else{
-    gameOver(score)
-}
-
-
-
-removeClassById(randomAlphabet, "bg-selected")
-
 
 }
 
- document.addEventListener('keyup', handlekeyboardButtonpress)
+
 
 
 
 function playAgain(){
     addClassById('score', 'hidden')
     removeClassById('playGround', 'hidden')
+    
     document.getElementById('lifeContainer').innerText= 5; 
     document.getElementById('scoreContainer').innerText= 0;
     enterGame();
 }
 
-
+document.addEventListener('keyup', handlekeyboardButtonpress)
 
 
