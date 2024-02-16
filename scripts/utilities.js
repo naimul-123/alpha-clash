@@ -1,13 +1,3 @@
-function hideEmementById(id){
-    const element = document.getElementById(id);
-    element.classList.add("hidden");
-    
-}
-function showEmementById(id){
-    const element = document.getElementById(id);
-    element.classList.remove("hidden");
-
-}
 
 function getRendomAlphabet(){
     const alphabetetString = "abcdefghijklmnopqrstuvwxyz";
@@ -17,4 +7,29 @@ function getRendomAlphabet(){
     return(alphabetets[index])
 
 }
+
+function addClassById(id, className){
+    document.getElementById(id).classList.add(className)
+}
+
+function removeClassById(id, className){
+    const selectedId =document.getElementById(id);
+    if(selectedId.classList.contains(className)){
+        selectedId.classList.remove(className)
+    }
+
+}
+
+function getInnertextById(id){
+    const text = document.getElementById(id).innerText;
+    return text;
+}
+function updateInnertextById(id, value){
+    document.getElementById(id).innerText = value ;
+    
+}
+
+
+
+
 

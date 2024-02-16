@@ -1,38 +1,79 @@
+function gameOver(score){
+        addClassById('playGround', 'hidden');
+        removeClassById('score', 'hidden') ;
+        
+        document.getElementById('totalScore').innerText= score;
+
+
+}
+
+
 
 
 function continueGame(){
  const alphabet = getRendomAlphabet();
 //  set randomly genareted alphabet to the screen
 const alphabetelement =document.getElementById("randomAlphabet");
-alphabetelement.innerText= alphabet.toUpperCase();
-
-const alphabetBtns = document.querySelectorAll(".kbd");
-
-for (const alphabetBtn of alphabetBtns) {
-    // if(alphabetBtn.innerText === alphabet){
-    //     alphabetBtn.style.backgoundColor = "#FFA500"
-    // }
-    if(alphabetBtn.innerText ===alphabet ){
-        alphabetBtn.classList.toggle('bg-selected')
-    }
-    // else{
-    //     if(alphabetBtn.classList.contains('bg-selected')){
-    //         alphabetBtn.classList.remove('bg-selected')
-    //     }
-
-    // }
-
-    // alphabetBtn.classList.toggle
-
+alphabetelement.innerText= alphabet;
+addClassById(alphabet, "bg-selected")
 }
 
 
-
-}
 function enterGame(){
     // hide the home screen and show the playground screen
-    hideEmementById('home');
-    showEmementById('playGround');
+    addClassById('home', 'hidden')
+    removeClassById('playGround', 'hidden')
+    continueGame();
+}
+
+
+
+
+function handlekeyboardButtonpress(event){
+    let score = parseInt(getInnertextById('scoreContainer'));
+    let life = parseInt(getInnertextById('lifeContainer'));
+    
+    const playeredPressedKey = event.key.toLowerCase();
+    const randomAlphabet = getInnertextById('randomAlphabet').toLowerCase();
+
+if(playeredPressedKey === randomAlphabet){
+     score ++
+     updateInnertextById('scoreContainer', score)
+
+}
+
+else{
+    life--
+    updateInnertextById('lifeContainer', life)
+
+}
+
+if(life>=0){
     continueGame()
 }
+else{
+    gameOver(score)
+}
+
+
+
+removeClassById(randomAlphabet, "bg-selected")
+
+
+}
+
+ document.addEventListener('keyup', handlekeyboardButtonpress)
+
+
+
+function playAgain(){
+    addClassById('score', 'hidden')
+    removeClassById('playGround', 'hidden')
+    document.getElementById('lifeContainer').innerText= 5; 
+    document.getElementById('scoreContainer').innerText= 0;
+    enterGame();
+}
+
+
+
 
